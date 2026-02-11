@@ -29,12 +29,12 @@ Complete architectural overview of the Bazzite development infrastructure.
      │   Runtime     │
      └───────┬───────┘
              │
-    ┌────────┴────────┐
-    │                 │
-┌───▼────┐      ┌────▼────┐      ┌────────┐      ┌──────────┐
-│OpenCode│      │OpenClaw │      │ Fedora │      │ Bazzite  │
-│  Dev   │      │   Dev   │      │ Tools  │      │   Arch   │
-└────────┘      └─────────┘      └────────┘      └──────────┘
+    ┌────────┴────────┬────────────┐
+    │                 │            │
+┌───▼────┐      ┌────▼────┐  ┌───▼────┐    ┌────────┐  ┌──────────┐
+│OpenCode│      │OpenClaw │  │LiteLLM │    │ Fedora │  │ Bazzite  │
+│  Dev   │      │   Dev   │  │ Proxy  │    │ Tools  │  │   Arch   │
+└────────┘      └─────────┘  └────────┘    └────────┘  └──────────┘
 
 All containers share:
 - /home/yish (full home directory access)
@@ -82,7 +82,29 @@ Agents: main (Pi identity)
 Model: qwen-portal/coder-model
 ```
 
-#### 3. fedora-tools
+#### 3. litellm-proxy
+**Purpose**: Unified LLM API proxy with load balancing
+
+```yaml
+Base Image: Fedora 43
+Status: Running
+Tools:
+  - Python 3.14.2
+  - LiteLLM 1.81.10
+Ports:
+  - 4000 (API endpoint + Web UI)
+Config: ~/.litellm/config.yaml
+Features:
+  - API key rotation (Claude, GPT-4, OpenRouter)
+  - Request caching (1h TTL)
+  - Automatic fallbacks
+  - Cost tracking
+Endpoint: http://localhost:4000/v1
+Web UI: http://localhost:4000/ui
+Remote: http://bazzite.tail8be4f7.ts.net:4000
+```
+
+#### 4. fedora-tools
 **Purpose**: General development utilities
 
 ```yaml
@@ -91,7 +113,7 @@ Status: Running (2 days uptime)
 Tools: Various CLI utilities
 ```
 
-#### 4. bazzite-arch
+#### 5. bazzite-arch
 **Purpose**: Arch Linux environment for AUR packages
 
 ```yaml
@@ -262,6 +284,10 @@ done
 ├── opencode-antigravity-multi-auth/  # OpenCode plugin
 ├── .openclaw/                  # OpenClaw config (shared to containers)
 ├── .opencode/                  # OpenCode config
+├── .litellm/                   # LiteLLM config (shared to containers)
+│   ├── config.yaml             # Proxy configuration
+│   ├── .env                    # API keys (gitignored)
+│   └── README.md               # Usage guide
 ├── workspace/                  # Project workspaces
 │   ├── opencode-projects/
 │   └── openclaw-projects/

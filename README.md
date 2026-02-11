@@ -27,6 +27,7 @@ Complete documentation for Bazzite system configuration, containerized developme
 ### Container-Specific Guides
 
 - **[openclaw-container-guide.md](./openclaw-container-guide.md)** - OpenClaw AI agent setup
+- **[LITELLM-SETUP.md](./LITELLM-SETUP.md)** - LiteLLM unified API proxy with load balancing
 - **[opencode-container-guide.md](./opencode-container-guide.md)** - OpenCode development environment (TODO)
 
 ### Quick References
@@ -48,6 +49,7 @@ Complete documentation for Bazzite system configuration, containerized developme
 |-----------|---------|--------|
 | `opencode-dev` | OpenCode AI development | ✅ Running |
 | `openclaw-dev` | OpenClaw AI agent runtime | ✅ Running |
+| `litellm-proxy` | Unified LLM API proxy | ✅ Running |
 | `fedora-tools` | General development tools | ✅ Running |
 | `bazzite-arch` | Arch Linux environment | ✅ Running |
 | `cursor-dev` | Cursor IDE environment | 📋 Template |
@@ -63,6 +65,8 @@ ssh yish@bazzite.tail8be4f7.ts.net
 ### Web Interfaces
 - OpenCode Frontend: `http://bazzite.tail8be4f7.ts.net:5173`
 - OpenCode Backend: `http://bazzite.tail8be4f7.ts.net:5003`
+- LiteLLM Proxy API: `http://bazzite.tail8be4f7.ts.net:4000/v1`
+- LiteLLM Web UI: `http://bazzite.tail8be4f7.ts.net:4000/ui`
 
 ### Mobile Access
 Use Claude Projects to store and access documentation from Claude mobile app.

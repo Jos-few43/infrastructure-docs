@@ -29,12 +29,12 @@ Complete architectural overview of the Bazzite development infrastructure.
      │   Runtime     │
      └───────┬───────┘
              │
-    ┌────────┴────────┬────────────┐
-    │                 │            │
-┌───▼────┐      ┌────▼────┐  ┌───▼────┐    ┌────────┐  ┌──────────┐
-│OpenCode│      │OpenClaw │  │LiteLLM │    │ Fedora │  │ Bazzite  │
-│  Dev   │      │   Dev   │  │ Proxy  │    │ Tools  │  │   Arch   │
-└────────┘      └─────────┘  └────────┘    └────────┘  └──────────┘
+    ┌────────┴────────┬────────────┬────────────┐
+    │                 │            │            │
+┌───▼────┐    ┌───────▼──┐   ┌───▼────┐  ┌──▼─────┐  ┌────────┐  ┌──────────┐
+│OpenCode│    │ OpenClaw │   │LiteLLM │  │AI CLI  │  │ Fedora │  │ Bazzite  │
+│  Dev   │    │   Dev    │   │ Proxy  │  │ Tools  │  │ Tools  │  │   Arch   │
+└────────┘    └──────────┘   └────────┘  └────────┘  └────────┘  └──────────┘
 
 All containers share:
 - /home/yish (full home directory access)
@@ -104,7 +104,27 @@ Web UI: http://localhost:4000/ui
 Remote: http://bazzite.tail8be4f7.ts.net:4000
 ```
 
-#### 4. fedora-tools
+#### 4. ai-cli-tools-dev
+**Purpose**: AI-powered CLI coding assistants
+
+```yaml
+Base Image: Fedora 43
+Status: Running
+Tools:
+  - Node.js 22.22.0
+  - Qwen Code 0.10.0
+  - Gemini CLI 0.28.0
+Config:
+  - ~/.config/qwen-code/
+  - ~/.config/gemini-cli/
+Features:
+  - Interactive REPL coding assistants
+  - MCP server support
+  - One-shot and interactive modes
+  - Extension/skills management
+```
+
+#### 5. fedora-tools
 **Purpose**: General development utilities
 
 ```yaml
@@ -113,7 +133,7 @@ Status: Running (2 days uptime)
 Tools: Various CLI utilities
 ```
 
-#### 5. bazzite-arch
+#### 6. bazzite-arch
 **Purpose**: Arch Linux environment for AUR packages
 
 ```yaml

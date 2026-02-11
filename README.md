@@ -28,6 +28,7 @@ Complete documentation for Bazzite system configuration, containerized developme
 
 - **[openclaw-container-guide.md](./openclaw-container-guide.md)** - OpenClaw AI agent setup
 - **[LITELLM-SETUP.md](./LITELLM-SETUP.md)** - LiteLLM unified API proxy with load balancing
+- **[AI-CLI-TOOLS.md](./AI-CLI-TOOLS.md)** - AI CLI tools (Qwen Code, Gemini CLI)
 - **[opencode-container-guide.md](./opencode-container-guide.md)** - OpenCode development environment (TODO)
 
 ### Quick References
@@ -50,6 +51,7 @@ Complete documentation for Bazzite system configuration, containerized developme
 | `opencode-dev` | OpenCode AI development | ✅ Running |
 | `openclaw-dev` | OpenClaw AI agent runtime | ✅ Running |
 | `litellm-proxy` | Unified LLM API proxy | ✅ Running |
+| `ai-cli-tools-dev` | AI CLI tools (Qwen, Gemini) | ✅ Running |
 | `fedora-tools` | General development tools | ✅ Running |
 | `bazzite-arch` | Arch Linux environment | ✅ Running |
 | `cursor-dev` | Cursor IDE environment | 📋 Template |
